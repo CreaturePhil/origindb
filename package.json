@@ -1,0 +1,32 @@
+{
+  "name": "eosdb",
+  "version": "1.0.0",
+  "description": "Serverless and flexible JSON database.",
+  "license": "MIT",
+  "repository": "CreaturePhil/eosdb",
+  "author": {
+    "name": "Phil",
+    "email": "birkal@outlook.com",
+    "url": "creaturephil.github.io"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "database",
+    "json"
+  ],
+  "dependencies": {
+    "graceful-fs": "^4.1.2",
+    "json-parse-helpfulerror": "^1.0.3",
+    "steno": "^0.4.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^1.11.2",
+    "jshint-stylish": "^2.0.1"
+  }
+}
