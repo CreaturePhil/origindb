@@ -40,9 +40,9 @@ In `directory_name` folder:
 // posts.json
 {
   posts: [
-    { title: 'eosdb is awesome!', body: '...', likes: 10 },
-    { title: 'flexbility ', body: '...', likes: 3 },
-    { title: 'something someting something', body: '...', likes: 8 }
+    { "title": "eosdb is awesome!", "body": "...", "likes": 10 },
+    { "title": "flexbility ", "body": "...", "likes": 3 },
+    { "title": "something someting something", "body": "...", "likes": 8 }
   ]
 }
 ```
