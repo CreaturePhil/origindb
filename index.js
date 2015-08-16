@@ -1,7 +1,7 @@
 var fs = require('graceful-fs');
+var jph = require('json-parse-helpfulerror');
 var path = require('path');
 var steno = require('steno');
-var jph = require('json-parse-helpfulerror');
 
 var base_dir = process.cwd();
 
@@ -62,7 +62,7 @@ module.exports = function(dir) {
     });
   }
 
-  db.save = save.bind(cacheObject);
+  db.save = save;
 
   return db;
 };
