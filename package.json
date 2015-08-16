@@ -1,6 +1,6 @@
 {
   "name": "eosdb",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Serverless and flexible JSON database.",
   "license": "MIT",
   "repository": "CreaturePhil/eosdb",
