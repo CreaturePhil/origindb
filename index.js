@@ -3,12 +3,8 @@ var jph = require('json-parse-helpfulerror');
 var path = require('path');
 var steno = require('steno');
 
-var base_dir = process.cwd();
-
-module.exports = function(dir) {
+module.exports = function(db_dir) {
   'use strict';
-
-  var db_dir = path.join(base_dir, dir); 
 
   var cacheObject = {};
   var checksums = {};
