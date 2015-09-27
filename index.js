@@ -42,21 +42,24 @@ module.exports = function(db_dir) {
     return cacheObject[key];
   }
 
-  function save() {
+  function save(cb) {
     for (var key in cacheObject) {
       var str = JSON.stringify(cacheObject[key]);
 
       if (str === checksums[key]) continue;
 
       checksums[key] = str;
-      write(key, cacheObject[key]);
+      write(key, cacheObject[key], cb);
     }
   }
 
-  function write(file, json) {
+  function write(file, json, cb) {
     var file_dir = path.join(db_dir, file + '.json');
     steno.writeFile(file_dir, JSON.stringify(json, null, 2), function(err) {
       if (err) throw err;
+      if (cb && typeof cb === 'function') {
+        cb();
+      }
     });
   }
 
