@@ -10,7 +10,7 @@
     "url": "creaturephil.github.io"
   },
   "scripts": {
-    "test": "gulp && mocha"
+    "test": "gulp && mocha --compilers js:babel/register --recursive"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -28,6 +28,7 @@
     "steno": "^0.4.2"
   },
   "devDependencies": {
+    "babel": "^5.8.23",
     "gulp": "^3.9.0",
     "gulp-jshint": "^1.11.2",
     "jshint-stylish": "^2.0.1",
