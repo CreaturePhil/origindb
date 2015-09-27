@@ -6,6 +6,10 @@ var steno = require('steno');
 module.exports = function(db_dir) {
   'use strict';
 
+  if (!db_dir || typeof db_dir !== 'string') {
+    throw new Error("Must provide a directory.");
+  }
+
   var cacheObject = {};
   var checksums = {};
 
