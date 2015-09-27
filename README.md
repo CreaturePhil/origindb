@@ -1,4 +1,4 @@
-# EosDB [![Build Status](https://travis-ci.org/CreaturePhil/eosdb.svg?branch=master)](https://travis-ci.org/CreaturePhil/eosdb) [![Dependency Status](https://david-dm.org/creaturephil/eosdb.svg)](https://david-dm.org/creaturephil/eosdb) [![devDependency Status](https://david-dm.org/creaturephil/eosdb/dev-status.svg)](https://david-dm.org/creaturephil/eosdb#info=devDependencies)
+# eosdb [![Build Status](https://travis-ci.org/CreaturePhil/eosdb.svg?branch=master)](https://travis-ci.org/CreaturePhil/eosdb) [![Dependency Status](https://david-dm.org/creaturephil/eosdb.svg)](https://david-dm.org/creaturephil/eosdb) [![devDependency Status](https://david-dm.org/creaturephil/eosdb/dev-status.svg)](https://david-dm.org/creaturephil/eosdb#info=devDependencies)
 
 Serverless and flexible JSON database.
 
