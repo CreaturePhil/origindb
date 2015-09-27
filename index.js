@@ -44,8 +44,6 @@ module.exports = function(db_dir) {
 
   function save() {
     for (var key in cacheObject) {
-      if (key === 'save') continue;
-
       var str = JSON.stringify(cacheObject[key]);
 
       if (str === checksums[key]) continue;
