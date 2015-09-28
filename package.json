@@ -10,7 +10,8 @@
     "url": "creaturephil.github.io"
   },
   "scripts": {
-    "test": "gulp && mocha"
+    "test": "gulp && mocha && matcha",
+    "bench": "matcha -R plain"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -31,6 +32,8 @@
     "gulp": "^3.9.0",
     "gulp-jshint": "^1.11.2",
     "jshint-stylish": "^2.0.1",
+    "lowdb": "^0.10.2",
+    "matcha": "^0.6.0",
     "mocha": "^2.3.3",
     "rimraf": "^2.4.3"
   }
