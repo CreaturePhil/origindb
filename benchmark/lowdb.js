@@ -11,8 +11,8 @@ suite('lowdb inserts', function() {
 
   bench('basic inserts', function() {
     counter++;
-    db('str').push(''+counter);
-    db('num').push(''+counter);
+    db('str').push({key: ''+counter, value: ''+counter});
+    db('num').push({key: counter, value: counter});
   });
 
   after(function() {
