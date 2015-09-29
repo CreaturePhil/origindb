@@ -37,9 +37,9 @@ module.exports = function(db_dir) {
     }
   });
 
-  function db(key) {
-    if (!cacheObject[key]) cacheObject[key] = {};
-    return cacheObject[key];
+  function db(jsonFile) {
+    if (!cacheObject[jsonFile]) cacheObject[jsonFile] = {};
+    return cacheObject[jsonFile];
   }
 
   function save(cb) {
@@ -64,6 +64,37 @@ module.exports = function(db_dir) {
   }
 
   db.save = save;
+
+  /**
+   * Helper `get` methods that contains a default value.
+   */
+
+  // get an array value, defaults to []
+  db.aget = function(jsonFile, key) {
+    var value = db(jsonFile)[key];
+    if (!Array.isArray(value)) {
+      return [];
+    }
+    return value;
+  };
+
+  // get a number value, defaults to 0
+  db.nget = function(jsonFile, key) {
+    var value = db(jsonFile)[key];
+    if (typeof value !== 'number') {
+      return 0;
+    }
+    return value;
+  };
+
+  // get a string value, defaults to ""
+  db.sget = function(jsonFile, key) {
+    var value = db(jsonFile)[key];
+    if (typeof value !== 'string') {
+      return 0;
+    }
+    return value;
+  };
 
   return db;
 };
