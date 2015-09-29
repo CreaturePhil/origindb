@@ -37,6 +37,7 @@ describe('eosdb', () => {
       assert.deepEqual(db('foo'), {bar: 1});
       readJSON((data) => {
         assert.deepEqual(data, {bar: 1});
+        assert.equal(db.size('foo'), 1);
         done();
       });
     }); 
@@ -47,6 +48,7 @@ describe('eosdb', () => {
       assert.equal(db('foo').bar, 1);
       readJSON((data) => {
         assert.deepEqual(data, {bar: 1});
+        assert.equal(db.size('foo'), 1);
         done();
       });
     });
@@ -61,6 +63,7 @@ describe('eosdb', () => {
         readJSON((data) => {
           assert.deepEqual(data, {bar: 2});
           assert.equal(db('foo').bar, 2);
+          assert.equal(db.size('foo'), 1);
           done();
         });
       });
@@ -76,6 +79,7 @@ describe('eosdb', () => {
         readJSON((data) => {
           assert.deepEqual(data, {});
           assert.deepEqual(db('foo'), {});
+          assert.equal(db.size('foo'), 0);
           done();
         });
       });

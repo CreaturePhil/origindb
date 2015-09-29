@@ -37,19 +37,19 @@ module.exports = function(db_dir) {
     }
   });
 
-  function db(jsonFile) {
-    if (!cacheObject[jsonFile]) cacheObject[jsonFile] = {};
-    return cacheObject[jsonFile];
+  function db(file) {
+    if (!cacheObject[file]) cacheObject[file] = {};
+    return cacheObject[file];
   }
 
   function save(cb) {
-    for (var key in cacheObject) {
-      var str = JSON.stringify(cacheObject[key]);
+    for (var file in cacheObject) {
+      var jsonData = JSON.stringify(cacheObject[file]);
 
-      if (str === checksums[key]) continue;
+      if (jsonData === checksums[file]) continue;
 
-      checksums[key] = str;
-      write(key, cacheObject[key], cb);
+      checksums[file] = jsonData;
+      write(file, cacheObject[file], cb);
     }
   }
 
@@ -65,31 +65,35 @@ module.exports = function(db_dir) {
 
   db.save = save;
 
+  db.size = function(file) {
+    return Object.keys(db(file)).length;
+  };
+
   /**
    * Helper `get` methods that contains a default value.
    */
 
-  // get an array value, defaults to []
-  db.aget = function(jsonFile, key) {
-    var value = db(jsonFile)[key];
+  // Get an array value, defaults to []
+  db.aget = function(file, key) {
+    var value = db(file)[key];
     if (!Array.isArray(value)) {
       return [];
     }
     return value;
   };
 
-  // get a number value, defaults to 0
-  db.nget = function(jsonFile, key) {
-    var value = db(jsonFile)[key];
+  // Get a number value, defaults to 0
+  db.nget = function(file, key) {
+    var value = db(file)[key];
     if (typeof value !== 'number') {
       return 0;
     }
     return value;
   };
 
-  // get a string value, defaults to ""
-  db.sget = function(jsonFile, key) {
-    var value = db(jsonFile)[key];
+  // Get a string value, defaults to ""
+  db.sget = function(file, key) {
+    var value = db(file)[key];
     if (typeof value !== 'string') {
       return 0;
     }
