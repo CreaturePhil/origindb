@@ -2,7 +2,17 @@
 
 Serverless and flexible JSON database.
 
-Each key in the `db` object corresponds to a JSON file.
+```js
+db(key).set(prop, value)
+```
+
+Each key in the `db` object **corresponds to a JSON file**.
+
+This can also be view as:
+
+```js
+db(file).set(prop, value)
+```
 
 ## Install
 
@@ -13,18 +23,18 @@ $ npm install origindb --save
 ## Usage
 
 ```js
-var db = require('origindb')('directory_name');
-db('money').phil = 10;
-db('seen').some_user = Date.now();
-db('posts').posts = [
+var db = require('origindb')('db');
+db('money').set('phil', 10);
+db('money').set('some_user', db('money').get('phil') + 10);
+db('seen').set('some_user', Date.now());
+db('posts').set('posts', [
   { title: 'OriginDB is awesome!', body: '...', likes: 10 },
   { title: 'flexbility ', body: '...', likes: 3 },
   { title: 'something someting something', body: '...', likes: 8 }
-];
-db.save();
+]);
 ```
 
-In `directory_name` **folder**:
+In the `db` **folder**:
 
 ```json
 // money.json
@@ -46,6 +56,15 @@ In `directory_name` **folder**:
   ]
 }
 ```
+
+## API
+
+### db(databaseDirectory)
+
+#### Arguments
+
+- databaseDirectory (String) -
+The folder where all the json files will be stored at.
 
 ## License
 
