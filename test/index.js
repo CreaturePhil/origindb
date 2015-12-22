@@ -68,9 +68,9 @@ describe('database', () => {
       });
     });
 
-    it('deletes', (done) => {
+    it('deletes', done => {
       db('foo').set('bar', 1);
-      readJSON((data) => {
+      readJSON(data => {
         assert.deepEqual(data, {bar: 1});
         delete db('foo').object().bar;
         db.save();
