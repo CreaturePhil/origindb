@@ -66,9 +66,10 @@ module.exports = function(dbDir) {
         return value ? value : defaultValue;
       },
 
-      set: function(prop, newValue) {
-        cacheObject[file][prop] = newValue;
+      set: function(prop, value) {
+        cacheObject[file][prop] = value;
         save();
+        return this;
       },
 
       object: function() {

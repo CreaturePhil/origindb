@@ -1,7 +1,7 @@
 {
   "name": "OriginDB",
   "version": "2.0.0",
-  "description": "Serverless and flexible JSON database.",
+  "description": "Blazing fast and flexible JSON database.",
   "license": "MIT",
   "repository": "CreaturePhil/OriginDB",
   "author": {
