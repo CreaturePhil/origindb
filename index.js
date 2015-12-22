@@ -78,5 +78,7 @@ module.exports = function(dbDir) {
     };
   }
 
+  db.save = save;
+
   return db;
 };

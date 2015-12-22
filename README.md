@@ -82,6 +82,28 @@ var db = require('origindb')('userdb');
 var db = require('origindb')('apidb');
 ```
 
+### save()
+
+Saves the current data in the database to all files. Does not write to a file
+if no changes were made.
+
+Parameters: None
+
+Returns: _undefined_
+
+Example:
+
+```js
+// main.js
+db('money').object().phil = 25;
+db.save();
+
+// money.json
+{
+  'phil': 25
+}
+```
+
 ### get(property, defaultValue)
 
 Get a property and if it does not exist, return the default value instead.
@@ -151,7 +173,28 @@ Parameters: None
 
 Returns: _Object_
 
-Example:
+Examples:
+
+```js
+// join_date.json
+{
+  'phil': 1450814470721,
+  'micheal': 1394814738429
+}
+
+// main.js
+var name = 'phil';
+console.log(db('join_date').object()[name]); // 1450814470721
+console.log(db('join_date').object().micheal); // 1394814738429
+db('join_date').object()[name] = new Date();
+db.save();
+
+// join_date.json
+{
+  'phil': 1450815256685,  
+  'micheal': 1394814738429
+}
+```
 
 ```js
 // money.js
