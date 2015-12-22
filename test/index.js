@@ -87,45 +87,4 @@ describe('eosdb', () => {
 
   });
 
-  describe('Helper methods', () => {
-
-    beforeEach(() => {
-      db = eosdb('db');
-    });
-
-    it('gets an array', (done) => {
-      db('foo').bar = ['hi', 'yo'];
-      db.save();
-      assert.deepEqual(db.aget('foo', 'bar'), ['hi', 'yo']);
-      assert.deepEqual(db.aget('foo', 'baz'), []);
-      readJSON((data) => {
-        assert.deepEqual(data, {bar: ['hi', 'yo']});
-        done();
-      });
-    });
-
-    it('gets a number', (done) => {
-      db('foo').bar = 1;
-      db.save();
-      assert.deepEqual(db.nget('foo', 'bar'), 1);
-      assert.deepEqual(db.nget('foo', 'baz'), 0);
-      readJSON((data) => {
-        assert.deepEqual(data, {bar: 1});
-        done();
-      });
-    });
-
-    it('gets a string', (done) => {
-      db('foo').bar = "hello";
-      db.save();
-      assert.deepEqual(db.sget('foo', 'bar'), "hello");
-      assert.deepEqual(db.sget('foo', 'baz'), "");
-      readJSON((data) => {
-        assert.deepEqual(data, {bar: "hello"});
-        done();
-      });
-    });
-
-  });
-
 });

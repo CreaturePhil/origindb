@@ -65,40 +65,5 @@ module.exports = function(db_dir) {
 
   db.save = save;
 
-  db.size = function(file) {
-    return Object.keys(db(file)).length;
-  };
-
-  /**
-   * Helper `get` methods that contains a default value.
-   */
-
-  // Get an array value, defaults to []
-  db.aget = function(file, key) {
-    var value = db(file)[key];
-    if (!Array.isArray(value)) {
-      return [];
-    }
-    return value;
-  };
-
-  // Get a number value, defaults to 0
-  db.nget = function(file, key) {
-    var value = db(file)[key];
-    if (typeof value !== 'number') {
-      return 0;
-    }
-    return value;
-  };
-
-  // Get a string value, defaults to ""
-  db.sget = function(file, key) {
-    var value = db(file)[key];
-    if (typeof value !== 'string') {
-      return 0;
-    }
-    return value;
-  };
-
   return db;
 };
