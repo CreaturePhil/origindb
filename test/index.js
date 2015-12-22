@@ -1,5 +1,5 @@
 var assert = require('assert');
-var eosdb = require('../index');
+var origindb = require('../index');
 var fs = require('fs');
 var rimraf = require('rimraf');
 
@@ -12,7 +12,7 @@ function readJSON(cb) {
   }, 20);
 }
 
-describe('eosdb', () => {
+describe('database', () => {
   'use strict';
 
   var db;
@@ -28,58 +28,53 @@ describe('eosdb', () => {
   describe('CRUD', () => {
 
     beforeEach(() => {
-      db = eosdb('db');
+      db = origindb('db');
     });
 
-    it('creates', (done) => {
-      db('foo').bar = 1;
-      db.save();
-      assert.deepEqual(db('foo'), {bar: 1});
-      readJSON((data) => {
+    it('creates', done => {
+      db('foo').set('bar', 1);
+      assert.deepEqual(db('foo').object(), {bar: 1});
+      readJSON(data => {
         assert.deepEqual(data, {bar: 1});
-        assert.equal(db.size('foo'), 1);
+        assert.equal(Object.keys(db('foo').object()).length, 1);
         done();
       });
     });
 
-    it('reads', (done) => {
-      db('foo').bar = 1;
-      db.save();
-      assert.equal(db('foo').bar, 1);
-      readJSON((data) => {
+    it('reads', done => {
+      db('foo').set('bar', 1);
+      assert.equal(db('foo').get('bar'), 1);
+      readJSON(data => {
         assert.deepEqual(data, {bar: 1});
-        assert.equal(db.size('foo'), 1);
+        assert.equal(Object.keys(db('foo').object()).length, 1);
         done();
       });
     });
 
-    it('updates', (done) => {
-      db('foo').bar = 1;
-      db.save();
-      readJSON((data) => {
+    it('updates', done => {
+      db('foo').set('bar', 1);
+      readJSON(data => {
         assert.deepEqual(data, {bar: 1});
-        db('foo').bar = db('foo').bar + 1;
-        db.save();
-        readJSON((data) => {
+        db('foo').set('bar', db('foo').get('bar') + 1);
+        readJSON(data => {
           assert.deepEqual(data, {bar: 2});
-          assert.equal(db('foo').bar, 2);
-          assert.equal(db.size('foo'), 1);
+          assert.equal(db('foo').get('bar'), 2);
+          assert.equal(Object.keys(db('foo').object()).length, 1);
           done();
         });
       });
     });
 
     it('deletes', (done) => {
-      db('foo').bar = 1;
-      db.save();
+      db('foo').set('bar', 1);
       readJSON((data) => {
         assert.deepEqual(data, {bar: 1});
-        delete db('foo').bar;
+        delete db('foo').object().bar;
         db.save();
-        readJSON((data) => {
+        readJSON(data => {
           assert.deepEqual(data, {});
-          assert.deepEqual(db('foo'), {});
-          assert.equal(db.size('foo'), 0);
+          assert.deepEqual(db('foo').object(), {});
+          assert.equal(Object.keys(db('foo').object()).length, 0);
           done();
         });
       });
