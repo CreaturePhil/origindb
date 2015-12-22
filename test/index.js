@@ -40,7 +40,7 @@ describe('eosdb', () => {
         assert.equal(db.size('foo'), 1);
         done();
       });
-    }); 
+    });
 
     it('reads', (done) => {
       db('foo').bar = 1;
@@ -55,7 +55,7 @@ describe('eosdb', () => {
 
     it('updates', (done) => {
       db('foo').bar = 1;
-      db.save(); 
+      db.save();
       readJSON((data) => {
         assert.deepEqual(data, {bar: 1});
         db('foo').bar = db('foo').bar + 1;
@@ -102,7 +102,7 @@ describe('eosdb', () => {
         assert.deepEqual(data, {bar: ['hi', 'yo']});
         done();
       });
-    }); 
+    });
 
     it('gets a number', (done) => {
       db('foo').bar = 1;
@@ -113,7 +113,7 @@ describe('eosdb', () => {
         assert.deepEqual(data, {bar: 1});
         done();
       });
-    }); 
+    });
 
     it('gets a string', (done) => {
       db('foo').bar = "hello";
@@ -124,7 +124,7 @@ describe('eosdb', () => {
         assert.deepEqual(data, {bar: "hello"});
         done();
       });
-    }); 
+    });
 
   });
 

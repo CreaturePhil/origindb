@@ -1,9 +1,9 @@
 {
-  "name": "eosdb",
-  "version": "1.2.0",
+  "name": "OriginDB",
+  "version": "2.0.0",
   "description": "Serverless and flexible JSON database.",
   "license": "MIT",
-  "repository": "CreaturePhil/eosdb",
+  "repository": "CreaturePhil/OriginDB",
   "author": {
     "name": "Phil",
     "email": "birkal@outlook.com",
@@ -13,7 +13,7 @@
     "test": "gulp && mocha"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">= 0.10.0"
   },
   "files": [
     "index.js"
