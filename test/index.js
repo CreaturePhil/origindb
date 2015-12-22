@@ -44,6 +44,9 @@ describe('database', () => {
     it('reads', done => {
       db('foo').set('bar', 1);
       assert.equal(db('foo').get('bar'), 1);
+      assert.equal(db('foo').get('baz', 0), 0);
+      assert.equal(db('foo').get('bar', 0), 1);
+      assert.equal(db('foo').get('boo', 2), 2);
       readJSON(data => {
         assert.deepEqual(data, {bar: 1});
         assert.equal(Object.keys(db('foo').object()).length, 1);
