@@ -63,7 +63,9 @@ module.exports = function(dbDir) {
       get: function(prop, defaultValue) {
         var value = cacheObject[file][prop];
 
-        return value ? value : defaultValue;
+        return typeof value === 'undefined' || typeof value === 'null'
+          ? defaultValue
+          : value;
       },
 
       set: function(prop, value) {
