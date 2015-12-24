@@ -1,4 +1,4 @@
-# OriginDB [![Build Status](https://travis-ci.org/CreaturePhil/OriginDB.svg?branch=master)](https://travis-ci.org/CreaturePhil/OriginDB) [![Dependency Status](https://david-dm.org/creaturephil/OriginDB.svg)](https://david-dm.org/creaturephil/OriginDB) [![devDependency Status](https://david-dm.org/creaturephil/OriginDB/dev-status.svg)](https://david-dm.org/creaturephil/OriginDB#info=devDependencies)
+# OriginDB [![Build Status](https://travis-ci.org/CreaturePhil/origindb.svg?branch=master)](https://travis-ci.org/CreaturePhil/origindb) [![Dependency Status](https://david-dm.org/creaturephil/origindb.svg)](https://david-dm.org/creaturephil/origindb) [![devDependency Status](https://david-dm.org/creaturephil/origindb/dev-status.svg)](https://david-dm.org/creaturephil/origindb#info=devDependencies)
 
 Blazing fast and flexible JSON database.
 
