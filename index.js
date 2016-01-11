@@ -63,11 +63,37 @@ module.exports = function(dbDir) {
       get: function(prop, defaultValue) {
         var value = cacheObject[file][prop];
 
+        if (Array.isArray(prop)) {
+          value = prop.reduce(function(acc, cur) {
+            if (typeof acc === 'undefined') return;
+            return typeof acc[cur] === 'undefined' ? undefined : acc[cur];
+          }, cacheObject[file]);
+        }
+
         return typeof value === 'undefined' ? defaultValue : value;
       },
 
       set: function(prop, value) {
-        cacheObject[file][prop] = value;
+        if (Array.isArray(prop)) {
+          var nested = cacheObject[file];          
+          var length = prop.length;
+          var lastIndex = length - 1;
+
+          for (var i = 0; i < length; i++) {
+            if (i === lastIndex) break;
+            var key = prop[i];
+            if (nested[key] == null) {
+              nested[key] = {}; 
+              nested = nested[key];
+            } else {
+              nested = nested[key];
+            }
+          }
+          nested[prop[lastIndex]] = value;
+        } else {
+          cacheObject[file][prop] = value;
+        }
+
         save();
         return this;
       },

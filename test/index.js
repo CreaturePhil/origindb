@@ -85,4 +85,38 @@ describe('database', () => {
 
   });
 
+  describe('nested object', () => {
+
+    beforeEach(() => {
+      db = origindb('db');
+    });
+
+    it('should save and get nested 2 object', done => {
+      db('foo').set(['bar', 'baz'], 1);
+      assert.deepEqual(db('foo').get(['bar', 'baz']), 1);
+      assert.deepEqual(db('foo').object(), {bar: {baz: 1}});
+      assert.deepEqual(db('foo').get(['bar', 'boo']), undefined);
+      assert.deepEqual(db('foo').get(['bar', 'boo'], 0), 0);
+      readJSON(data => {
+        assert.deepEqual(data, {bar: {baz: 1}});
+        assert.equal(Object.keys(db('foo').object()).length, 1);
+        done();
+      });
+    });
+
+    it('should save and get nested 3 object', done => {
+      db('foo').set(['bar', 'baz', 'maz'], 25);
+      assert.deepEqual(db('foo').get(['bar', 'baz', 'maz']), 25);
+      assert.deepEqual(db('foo').object(), {bar: {baz: {maz: 25}}});
+      assert.deepEqual(db('foo').get(['bar', 'baz', 'boo']), undefined);
+      assert.deepEqual(db('foo').get(['bar', 'baz', 'boo'], 0), 0);
+      readJSON(data => {
+        assert.deepEqual(data, {bar: {baz: {maz: 25}}});
+        assert.equal(Object.keys(db('foo').object()).length, 1);
+        done();
+      });
+    });
+
+  });
+
 });
