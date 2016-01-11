@@ -110,7 +110,7 @@ Get a property and if it does not exist, return the default value instead.
 
 Parameters:
 
-- ``property``: _String_
+- ``property``: _String_ | __Array__
 - ``defaultValue``: _any_
 
 Returns: _any_ - Depends on what is in property.
@@ -130,13 +130,34 @@ db('money').get('jared', 0); // 0
 db('money').get('stevo', 0); // 5
 ```
 
+```js
+// profile.json
+{
+  'phil': {
+    'name': 'Philip La',
+    'img': {
+      'width': 55,
+      'height': 20
+    }
+  }
+}
+
+// main.js
+db('profile').get(['phil', 'name']); // 'Philip La'
+db('profile').get(['phil', 'img', 'width']); // 55
+db('profile').get(['phil', 'img', 'height'], 0); // 20
+db('profile').get(['phil', 'img', 'resolution'], '4k'); // '4k'
+db('profile').get(['phil', 'join_date']); // undefined
+db('profile').get(['phil', 'img']); // { width: 55, height: 20 }
+```
+
 ### set(property, value)
 
 Set a property with a value. This method automatically saves.
 
 Parameters:
 
-- ``property``: _String_
+- ``property``: _String_ | __Array__
 - ``value``: _any_
 
 Returns: _Object_ - Methods of OriginDB. This is useful for chaining methods
@@ -163,6 +184,41 @@ db('money')
 
 ```js
 db('tickets').set('phil', db('tickets').get('phil').concat[generateTicket()]);
+```
+
+```js
+// profile.json before
+{
+  'phil': {
+    'name': 'Steven Hausen',
+    'img': {
+      'width': 55,
+      'height': 20
+    }
+  }
+}
+
+// main.js
+db('profile')
+  .set(['phil', 'name'], 'Steven Hausen')
+  .set(['phil', 'friends'], ['fender', 'a Gryphon'])
+  .set(['phil', 'wins', 'game_format'], 9)
+  .set(['phil', 'img', 'height'], 200);
+
+// profile.json after
+{
+  'phil': {
+    'name': 'Steven Hausen',
+    'img': {
+      'width': 55,
+      'height': 200
+    },
+    'friends': ['fender', 'a Gryphon'],
+    'wins': {
+      'game_format': 9
+    }
+  }
+}
 ```
 
 ### object()
