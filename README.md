@@ -151,13 +151,42 @@ db('profile').get(['phil', 'join_date']); // undefined
 db('profile').get(['phil', 'img']); // { width: 55, height: 20 }
 ```
 
+### delete(property)
+
+Delete a property.
+Shorthand for ``delete db('key').object()['prop']; db.save();``
+
+Parameters:
+
+- ``property``: _String_ | _Array_
+
+Returns: _Object_ - Methods of OriginDB. This is useful for chaining methods
+together.
+
+Example:
+
+```js
+// food.json before
+{
+  'soup': true,
+  'noodle': true
+}
+
+db('food').delete('soup');
+
+// food.json after
+{
+  'noodle': true
+}
+```
+
 ### set(property, value)
 
 Set a property with a value. This method automatically saves.
 
 Parameters:
 
-- ``property``: _String_ | __Array__
+- ``property``: _String_ | _Array_
 - ``value``: _any_
 
 Returns: _Object_ - Methods of OriginDB. This is useful for chaining methods

@@ -75,7 +75,7 @@ module.exports = function(dbDir) {
 
       set: function(prop, value) {
         if (Array.isArray(prop)) {
-          var nested = cacheObject[file];          
+          var nested = cacheObject[file];
           var length = prop.length;
           var lastIndex = length - 1;
 
@@ -83,7 +83,7 @@ module.exports = function(dbDir) {
             if (i === lastIndex) break;
             var key = prop[i];
             if (nested[key] == null) {
-              nested[key] = {}; 
+              nested[key] = {};
               nested = nested[key];
             } else {
               nested = nested[key];
@@ -100,6 +100,12 @@ module.exports = function(dbDir) {
 
       object: function() {
         return cacheObject[file];
+      },
+
+      delete: function(prop) {
+        delete cacheObject[file][prop];
+        save();
+        return this;
       }
     };
   }

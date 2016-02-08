@@ -119,4 +119,22 @@ describe('database', () => {
 
   });
 
+  describe('delete prop', () => {
+
+    beforeEach(() => {
+      db = origindb('db');
+    });
+
+    it('should delete a prop', (done) => {
+      db('foo').set('yo', 'ho');
+      db('foo').delete('yo');
+      readJSON(data => {
+        assert.deepEqual(data, {});
+        assert.equal(Object.keys(db('foo').object()).length, 0);
+        done();
+      });
+    });
+
+  });
+
 });
