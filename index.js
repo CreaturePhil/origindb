@@ -103,6 +103,9 @@ module.exports = function(dbDir) {
       },
 
       delete: function(prop) {
+      	if (!cacheObject[file][prop]) {
+          return false
+        }
         delete cacheObject[file][prop];
         save();
         return this;
