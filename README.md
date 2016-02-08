@@ -110,7 +110,7 @@ Get a property and if it does not exist, return the default value instead.
 
 Parameters:
 
-- ``property``: _String_ | __Array__
+- ``property``: _String_ | _Array_
 - ``defaultValue``: _any_
 
 Returns: _any_ - Depends on what is in property.
