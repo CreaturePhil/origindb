@@ -40,7 +40,8 @@ module.exports = function(dbDir) {
         if (e instanceof SyntaxError) e.message = 'Malformed JSON in file: ' + file + '\n' + e.message;
         throw e;
       }
-   });
+   })
+   .value();
 
   function save() {
     _.forIn(cacheObject, function(value, file) {
