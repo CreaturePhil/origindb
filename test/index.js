@@ -121,7 +121,7 @@ describe('database', () => {
 
   describe('has prop', () => {
 
-    beforeEach(() => {
+    before(() => {
       db = origindb('db');
     });
 
