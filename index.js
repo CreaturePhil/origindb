@@ -102,6 +102,10 @@ module.exports = function(dbDir) {
         return cacheObject[file];
       },
 
+      has: function(prop) {
+        return cacheObject[file].hasOwnProperty(prop);
+      },
+
       delete: function(prop) {
         delete cacheObject[file][prop];
         save();

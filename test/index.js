@@ -119,6 +119,24 @@ describe('database', () => {
 
   });
 
+  describe('has prop', () => {
+
+    beforeEach(() => {
+      db = origindb('db');
+    });
+
+    it('should have a prop', () => {
+      db('foo').set('yo', 'ho');
+      assert.deepEqual(db('foo').has('yo'), true);
+    });
+
+    it('should not have a prop', () => {
+      db('foo').delete('yo');
+      assert.deepEqual(db('foo').has('yo'), false);
+    });
+
+  });
+
   describe('delete prop', () => {
 
     beforeEach(() => {

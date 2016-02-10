@@ -151,6 +151,30 @@ db('profile').get(['phil', 'join_date']); // undefined
 db('profile').get(['phil', 'img']); // { width: 55, height: 20 }
 ```
 
+### has(property)
+
+Checks to see if it has a property.
+
+Parameters:
+
+- ``property``: _String_
+
+Returns: _Boolean_
+
+Example:
+
+```js
+{
+  'bar': 'some kind of data',
+  'baz': 'some kind of data'
+}
+
+console.log(db('foo').has('bar'));
+//=> true
+console.log(db('foo').has('boo'));
+//=> false
+```
+
 ### delete(property)
 
 Delete a property.
