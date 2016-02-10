@@ -107,7 +107,8 @@ module.exports = function(dbDir) {
       },
 
       delete: function(prop) {
-        delete cacheObject[file][prop];
+        let obj = cacheObject[file];
+        delete obj[prop];
         save();
         return this;
       }
