@@ -1,6 +1,6 @@
 {
   "name": "origindb",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Blazing fast and flexible JSON database.",
   "license": "MIT",
   "repository": "CreaturePhil/origindb",
