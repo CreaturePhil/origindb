@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var fs = require('graceful-fs');
 var jph = require('json-parse-helpfulerror');
 var path = require('path');
@@ -57,32 +58,32 @@ module.exports = function(dbDir) {
 
   function db(file) {
     if (!cacheObject[file]) cacheObject[file] = {};
+    var obj = cacheObject[file];
 
     // methods
     return {
       get: function(prop, defaultValue) {
-        var value = cacheObject[file][prop];
+        var value = _.get(obj, prop);
 
         return typeof value === 'undefined' ? defaultValue : value;
       },
 
       set: function(prop, value) {
-        cacheObject[file][prop] = value;
+        _.set(obj, prop, value);
         save();
         return this;
       },
 
       object: function() {
-        return cacheObject[file];
+        return obj;
       },
 
       has: function(prop) {
-        return cacheObject[file].hasOwnProperty(prop);
+        return _.has(obj, prop);
       },
 
       delete: function(prop) {
-        let obj = cacheObject[file];
-        delete obj[prop];
+        _.unset(obj, prop);
         save();
         return this;
       }

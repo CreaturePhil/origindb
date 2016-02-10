@@ -157,7 +157,7 @@ Checks to see if it has a property.
 
 Parameters:
 
-- ``property``: _String_
+- ``property``: _String_ | _Array_
 
 Returns: _Boolean_
 
