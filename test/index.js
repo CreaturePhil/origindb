@@ -119,24 +119,6 @@ describe('database', () => {
 
   });
 
-  describe('has prop', () => {
-
-    before(() => {
-      db = origindb('db');
-    });
-
-    it('should have a prop', () => {
-      db('foo').set('yo', 'ho');
-      assert.deepEqual(db('foo').has('yo'), true);
-    });
-
-    it('should not have a prop', () => {
-      db('foo').delete('yo');
-      assert.deepEqual(db('foo').has('yo'), false);
-    });
-
-  });
-
   describe('delete prop', () => {
 
     beforeEach(() => {
@@ -151,6 +133,24 @@ describe('database', () => {
         assert.equal(Object.keys(db('foo').object()).length, 0);
         done();
       });
+    });
+
+  });
+
+  describe('has prop', () => {
+
+    before(() => {
+      db = origindb('db');
+    });
+
+    it('should have a prop', () => {
+      db('foo').set('yo', 'ho');
+      assert.deepEqual(db('foo').has('yo'), true);
+    });
+
+    it('should not have a prop', () => {
+      db('foo').delete('yo');
+      assert.deepEqual(db('foo').has('yo'), false);
     });
 
   });
