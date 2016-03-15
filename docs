@@ -1,0 +1,51 @@
+[
+  {
+    "description": "Create a database.",
+    "tags": [],
+    "loc": {
+      "start": {
+        "line": 3,
+        "column": 0
+      },
+      "end": {
+        "line": 5,
+        "column": 3
+      }
+    },
+    "context": {
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 1
+        }
+      },
+      "file": "/home/phil/Code/origindb/src/index.js",
+      "code": "'use strict';\n\n/**\n * Create a database.\n */\nfunction OriginDB(name, options) {\n\n}\n"
+    },
+    "name": "OriginDB",
+    "kind": "class",
+    "params": [
+      {
+        "title": "param",
+        "name": "name",
+        "lineNumber": 6
+      },
+      {
+        "title": "param",
+        "name": "options",
+        "lineNumber": 6
+      }
+    ],
+    "members": {
+      "instance": [],
+      "static": []
+    },
+    "path": [
+      "OriginDB"
+    ]
+  }
+]
