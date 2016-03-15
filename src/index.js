@@ -1,11 +1,11 @@
 'use strict';
 
 const _ = require('lodash');
-const methods = require('./methods');
+const createMethods = require('./methods');
+const adapters = require('./adapters');
 
 const defaultOptions = {
-  adapter: 'files',
-  bson: false
+  adapter: 'files'
 };
 
 /**
@@ -18,7 +18,6 @@ const defaultOptions = {
 function OriginDB(name, options) {
   let objects = {};
   let checksums = {};
-  let save;
 
   if (!_.isString(name)) {
     throw new Error('Invalid name');
@@ -28,25 +27,24 @@ function OriginDB(name, options) {
     options = defaultOptions;
   }
 
-  if (!_.has(adapters, options.adapters)) {
-      throw new Error('Unknown adpater');
+  if (!_.has(adapters, options.adapter)) {
+      throw new Error('Unknown adapter');
   }
 
-  const adapter = adapters[options.adapter];
-  const save = adapters[options.adapter](name, objects, checksums).bind(null, checksums);
-  adapters[options.adapter](name, (savedObjects, save) => {
-    objects = savedObjects;
-    save = save.bind(null, checksums);
-  });
+  const save = adapters[options.adapter](name, objects, checksums, options);
 
   /**
    * The database instance.
+   *
    * @param {string} objectName
+   * @param {Object} methods
    */
   function db(objectName) {
     if (!_.has(objects, objectName)) objects[objectName] = {};
-    return createMethods(objects[objectName], save);
+    return createMethods(objects[objectName], save.bind(null, objectName));
   }
 
   return db;
 }
+
+module.exports = OriginDB;

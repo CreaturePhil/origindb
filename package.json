@@ -10,7 +10,7 @@
     "url": "creaturephil.github.io"
   },
   "scripts": {
-    "test": "gulp && mocha"
+    "test": "ava"
   },
   "engines": {
     "node": "> 4.0.0"
@@ -25,10 +25,11 @@
   "dependencies": {
     "graceful-fs": "^4.1.2",
     "json-parse-helpfulerror": "^1.0.3",
-    "lodash": "^4.3.0",
+    "lodash": "^4.6.1",
     "steno": "^0.4.2"
   },
   "devDependencies": {
+    "ava": "^0.13.0",
     "gulp": "^3.9.0",
     "gulp-jshint": "^2.0.0",
     "jshint-stylish": "^2.1.0",

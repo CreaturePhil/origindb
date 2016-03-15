@@ -4,8 +4,9 @@ const _ = require('lodash');
 const fs = require('fs');
 const jph = require('json-parse-helpfulerror');
 const path = require('path');
+const steno = require('steno');
 
-function Files(name, objects, checksums) {
+function Files(name, objects, checksums, options) {
   try {
     fs.statSync(name);
   } catch (err) {
@@ -19,7 +20,7 @@ function Files(name, objects, checksums) {
   });
 
   _.forEach(dir, (file) => {
-    const fileDir = path.resolve(name, file);
+    const fileDir = path.join(name, file);
     const fileName = file.slice(0, -5);
     const data = (fs.readFileSync(fileDir, 'utf-8') || '').trim();
 
@@ -33,4 +34,22 @@ function Files(name, objects, checksums) {
       throw e;
     }
   });
+
+  function save(file) {
+    const checksum = JSON.stringify(objects[file]);
+
+    if (checksums[file] === checksum) return;
+
+    checksums[file] = checksum;
+
+    const fileDir = path.join(name, file + '.json');
+
+    steno.writeFile(fileDir, JSON.stringify(objects[file], null, 2), (err) => {
+      if (err) throw err;
+    });
+  }
+
+  return save;
 }
+
+module.exports = Files;
