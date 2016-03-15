@@ -323,6 +323,14 @@ var total = Object.keys(users).reduce(function(acc, cur) {
 console.log(total); // 63
 ```
 
+## Other methods
+
+Some other methods that are provided by lodash are:
+[keys](https://lodash.com/docs#keys),
+[transform](https://lodash.com/docs#transform),
+[values](https://lodash.com/docs#values), and
+[update](https://lodash.com/docs#update).
+
 ## License
 
 MIT © [Phil](http://creaturephil.github.io)
