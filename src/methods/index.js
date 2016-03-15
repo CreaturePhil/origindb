@@ -36,7 +36,7 @@ function createMethods(object, save) {
   });
 
   // backwards compatability with < v2.4.1
-  methods.delete = _.unset;
+  methods.delete = methods.unset;
 
   methods.object = () => object;
 

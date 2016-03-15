@@ -10,7 +10,7 @@
     "url": "creaturephil.github.io"
   },
   "scripts": {
-    "test": "ava"
+    "test": "eslint *.js src/*.js test/*.js && mocha"
   },
   "engines": {
     "node": "> 4.0.0"
@@ -29,10 +29,7 @@
     "steno": "^0.4.2"
   },
   "devDependencies": {
-    "ava": "^0.13.0",
-    "gulp": "^3.9.0",
-    "gulp-jshint": "^2.0.0",
-    "jshint-stylish": "^2.1.0",
+    "eslint": "^2.4.0",
     "mocha": "^2.3.4",
     "rimraf": "^2.5.0"
   }

@@ -28,7 +28,7 @@ function OriginDB(name, options) {
   }
 
   if (!_.has(adapters, options.adapter)) {
-      throw new Error('Unknown adapter');
+    throw new Error('Unknown adapter');
   }
 
   const save = adapters[options.adapter](name, objects, checksums, options);
@@ -43,6 +43,13 @@ function OriginDB(name, options) {
     if (!_.has(objects, objectName)) objects[objectName] = {};
     return createMethods(objects[objectName], save.bind(null, objectName));
   }
+
+  // backwards compatability with < v2.4.1
+  db.save = () => {
+    _.forIn(objects, function(value, file) {
+      save(file);
+    });
+  };
 
   return db;
 }
