@@ -1,6 +1,6 @@
 {
   "name": "origindb",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "description": "Blazing fast and flexible JSON database.",
   "license": "MIT",
   "repository": "CreaturePhil/origindb",
@@ -16,7 +16,7 @@
     "node": "> 4.0.0"
   },
   "files": [
-    "index.js"
+    "src"
   ],
   "keywords": [
     "database",
