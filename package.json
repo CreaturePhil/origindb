@@ -1,9 +1,10 @@
 {
   "name": "origindb",
-  "version": "2.5.1",
+  "version": "2.5.2",
   "description": "Blazing fast and flexible JSON database.",
   "license": "MIT",
   "repository": "CreaturePhil/origindb",
+  "main": "src/index.js",
   "author": {
     "name": "Phil",
     "email": "birkal@outlook.com",
