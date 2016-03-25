@@ -30,7 +30,7 @@
     "steno": "^0.4.2"
   },
   "devDependencies": {
-    "eslint": "^2.4.0",
+    "eslint": "^2.5.0",
     "mocha": "^2.3.4",
     "rimraf": "^2.5.0"
   }
