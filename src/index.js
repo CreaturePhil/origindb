@@ -41,7 +41,7 @@ function OriginDB(name, options) {
    * @param {Object} methods
    */
   function db(objectName) {
-    if (options.adapter === 'mongo') deasync.loopWhile(() => !save.hasLoaded);
+    deasync.loopWhile(() => !save.hasLoaded);
     if (!_.has(objects, objectName)) objects[objectName] = {};
     return createMethods(objects[objectName], save.bind(null, objectName));
   }

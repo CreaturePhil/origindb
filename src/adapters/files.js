@@ -49,6 +49,8 @@ function Files(name, objects, checksums) {
     });
   }
 
+  save.hasLoaded = true;
+
   return save;
 }
 
