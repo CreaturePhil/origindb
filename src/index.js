@@ -41,18 +41,14 @@ function OriginDB(name, options) {
    * @param {Object} methods
    */
   function db(objectName) {
-    if (typeof save.hasLoaded === 'boolean') {
-      deasync.loopWhile(() => !save.hasLoaded);
-    }
+    if (_.isBoolean(save.hasLoaded)) deasync.loopWhile(() => !save.hasLoaded);
     if (!_.has(objects, objectName)) objects[objectName] = {};
     return createMethods(objects[objectName], save.bind(null, objectName));
   }
 
   // backwards compatability with < v2.4.1
   db.save = () => {
-    if (typeof save.hasLoaded === 'boolean') {
-      deasync.loopWhile(() => !save.hasLoaded);
-    }
+    if (_.isBoolean(save.hasLoaded)) deasync.loopWhile(() => !save.hasLoaded);
     _.forIn(objects, function(value, file) {
       save(file);
     });
