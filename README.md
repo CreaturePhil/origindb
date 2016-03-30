@@ -85,6 +85,10 @@ var db = require('origindb')('userdb');
 var db = require('origindb')('apidb');
 ```
 
+```js
+var db = require('origindb')('mongodb://localhost:27017/myproject', {adapter: 'mongo'});
+```
+
 ### save()
 
 Saves the current data in the database to all files. Does not write to a file
@@ -333,6 +337,45 @@ Some other methods that are provided by lodash are:
 [transform](https://lodash.com/docs#transform),
 [values](https://lodash.com/docs#values), and
 [update](https://lodash.com/docs#update).
+
+## Other Adapters
+
+OriginDB defaults to `files` adapter which just uses files in a folder. However,
+OriginDB supports other ways to store data.
+
+### MongoDB
+
+OriginDB stores data in MongoDB like this:
+
+```js
+var db = require('origindb')('mongodb://localhost:27017/myproject', {adapter: 'mongo'});
+db('money')
+  .set('phil', 10)
+  .set('some_user', db('money').get('phil') + 10);
+db('seen').set('some_user', Date.now());
+db('posts').set('posts', [
+  { title: 'OriginDB is awesome!', body: '...', likes: 10 },
+  { title: 'flexbility ', body: '...', likes: 3 },
+  { title: 'something someting something', body: '...', likes: 8 }
+]);
+
+// in MongoDB:
+{
+	"_id" : ObjectId("567e4741b09bffce48aa98b1"),
+	"name" : "money",
+	"data" : "{\"phil\":10,\"some_user\":20}"
+}
+{
+	"_id" : ObjectId("567e4741b09bffce48aa98b2"),
+	"name" : "seen",
+	"data" : "{\"some_user\":1451116353687}"
+}
+{
+	"_id" : ObjectId("567e4741b09bffce48aa98b3"),
+	"name" : "posts",
+	"data" : "{\"posts\":[{\"title\":\"OriginDB is awesome!\",\"body\":\"...\",\"likes\":10},{\"title\":\"flexbility \",\"body\":\"...\",\"likes\":3},{\"title\":\"something someting something\",\"body\":\"...\",\"likes\":8}]}"
+}
+```
 
 ## License
 
