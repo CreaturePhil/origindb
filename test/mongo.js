@@ -23,7 +23,7 @@ function readJSON(cb) {
         db.close();
       });
     });
-  }, 50);
+  }, 30);
 }
 
 function remove(done) {
