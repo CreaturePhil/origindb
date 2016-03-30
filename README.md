@@ -59,14 +59,17 @@ In the `db` **folder**:
 
 ## API
 
-### db(databaseDirectory)
+### db(databaseDirectory, options)
 
 Create a new database.
 
 Parameters:
 
 - ``databaseDirectory``: _String_ -
-The folder where all the json files will be stored at.
+The folder where all the json files will be stored at when using the `files`
+adapter. Otherwise, it is the name of where the data will be stored at.
+- ``options`` - _Object_
+  - ``adapter`` - _String_. Defaults to `files`.
 
 Returns: Function(key)
   - ``key``: _String_ - JSON file in the database directory

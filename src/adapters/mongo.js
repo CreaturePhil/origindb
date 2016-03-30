@@ -1,12 +1,9 @@
 'use strict';
 
-const _ = require('lodash');
 const MongoClient = require('mongodb').MongoClient;
-const fs = require('fs');
 const jph = require('json-parse-helpfulerror');
-const path = require('path');
 
-function Mongo(url, objects, checksums, options) {
+function Mongo(url, objects, checksums) {
   function save(name) {
     const checksum = JSON.stringify(objects[name]);
 
@@ -42,7 +39,7 @@ function Mongo(url, objects, checksums, options) {
           checksums[doc.name] = JSON.stringify(objects[doc.name]);
         } catch (e) {
           if (e instanceof SyntaxError) {
-            e.message = 'Malformed JSON in file: ' + file + '\n' + e.message;
+            e.message = 'Malformed JSON in doc: ' + doc.name + '\n' + e.message;
           }
           throw e;
         }

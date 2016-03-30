@@ -6,7 +6,7 @@ const jph = require('json-parse-helpfulerror');
 const path = require('path');
 const steno = require('steno');
 
-function Files(name, objects, checksums, options) {
+function Files(name, objects, checksums) {
   try {
     fs.statSync(name);
   } catch (err) {
