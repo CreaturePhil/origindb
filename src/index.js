@@ -1,8 +1,9 @@
 'use strict';
 
 const _ = require('lodash');
-const createMethods = require('./methods');
 const adapters = require('./adapters');
+const createMethods = require('./methods');
+const deasync = require('deasync');
 
 const defaultOptions = {
   adapter: 'files'
@@ -40,12 +41,14 @@ function OriginDB(name, options) {
    * @param {Object} methods
    */
   function db(objectName) {
+    if (options.adapter === 'mongo') deasync.loopWhile(() => !save.hasLoaded);
     if (!_.has(objects, objectName)) objects[objectName] = {};
     return createMethods(objects[objectName], save.bind(null, objectName));
   }
 
   // backwards compatability with < v2.4.1
   db.save = () => {
+    deasync.loopWhile(() => !save.hasLoaded);
     _.forIn(objects, function(value, file) {
       save(file);
     });
