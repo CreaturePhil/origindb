@@ -340,14 +340,20 @@ Some other methods that are provided by lodash are:
 
 ## Other Adapters
 
-OriginDB defaults to `files` adapter which just uses files in a folder. However,
-OriginDB supports other ways to store data.
+OriginDB defaults to `files` adapter which just uses files in a folder to store
+the data. However, OriginDB supports other ways to store data.
+
+Current supported adapters are:
+
+- Files
+- MongoDB
 
 ### MongoDB
 
 OriginDB stores data in MongoDB like this:
 
 ```js
+// app.js
 var db = require('origindb')('mongodb://localhost:27017/myproject', {adapter: 'mongo'});
 db('money')
   .set('phil', 10)
@@ -359,7 +365,7 @@ db('posts').set('posts', [
   { title: 'something someting something', body: '...', likes: 8 }
 ]);
 
-// in MongoDB:
+// MongoDB
 {
 	"_id" : ObjectId("567e4741b09bffce48aa98b1"),
 	"name" : "money",
