@@ -11,7 +11,8 @@
     "url": "creaturephil.github.io"
   },
   "scripts": {
-    "test": "eslint *.js src/**/*.js test/*.js && mocha"
+    "test": "eslint *.js src/**/*.js test/*.js && mocha",
+    "tester": "mocha"
   },
   "engines": {
     "node": "> 4.0.0"

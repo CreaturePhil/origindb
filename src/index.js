@@ -28,11 +28,13 @@ function OriginDB(name, options) {
     options = defaultOptions;
   }
 
-  if (!_.has(adapters, options.adapter)) {
+  if (_.isString(options.adapter) && !_.has(adapters, options.adapter)) {
     throw new Error('Unknown adapter');
   }
 
-  const save = adapters[options.adapter](name, objects, checksums, options);
+  const save = _.isFunction(options.adapter) ?
+    options.adapter(name, objects, checksums, options) :
+    adapters[options.adapter](name, objects, checksums, options);
 
   /**
    * The database instance.

@@ -69,7 +69,7 @@ Parameters:
 The folder where all the json files will be stored at when using the `files`
 adapter. Otherwise, it is the name of where the data will be stored at.
 - ``options`` - _Object_
-  - ``adapter`` - _String_. Defaults to `files`.
+  - ``adapter`` - _String_ or _Function_. Defaults to `files`.
 
 Returns: Function(key)
   - ``key``: _String_ - JSON file in the database directory
@@ -338,7 +338,7 @@ Some other methods that are provided by lodash are:
 [values](https://lodash.com/docs#values), and
 [update](https://lodash.com/docs#update).
 
-## Other Adapters
+## Adapters
 
 OriginDB defaults to `files` adapter which just uses files in a folder to store
 the data. However, OriginDB supports other ways to store data.
@@ -381,6 +381,24 @@ db('posts').set('posts', [
 	"name" : "posts",
 	"data" : "{\"posts\":[{\"title\":\"OriginDB is awesome!\",\"body\":\"...\",\"likes\":10},{\"title\":\"flexbility \",\"body\":\"...\",\"likes\":3},{\"title\":\"something someting something\",\"body\":\"...\",\"likes\":8}]}"
 }
+```
+
+You can also create your own adapters. For example, a adapter that does not save
+to file but instead does nothing.
+
+```js
+var db = require('origindb')({
+  /**
+   * @param {String} name - name of location of where the data will be stored.
+   * @param {Object} objects - the internal in-memory cache object
+   * @param {Object} checksums - every key in objects' checksums
+   * @param {Object} options
+   * @return {Function} save function
+   */
+  adapter: function(name, objects, checksums, options) {
+    return function noopSave() {};
+  }
+});
 ```
 
 ## License
