@@ -24,7 +24,9 @@ function OriginDB(name, options) {
     throw new Error('Invalid name');
   }
 
-  if (_.isUndefined(options)) {
+  if (_.isObject(options)) {
+    options = Object.assign({}, defaultOptions, options);
+  } else {
     options = defaultOptions;
   }
 

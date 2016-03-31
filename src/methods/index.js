@@ -27,10 +27,10 @@ function createMethods(object, save) {
   let methods = {};
 
   _.forEach(providedMethods, (method) => {
+    const bindedMethod = _[method].bind(null, object);
     if (_.isString(method)) {
-      methods[method] = _[method].bind(null, object);
+      methods[method] = bindedMethod;
     } else {
-      const bindedMethod = _[method].bind(null, object);
       methods[method] = _.flow(bindedMethod, save, () => methods);
     }
   });
