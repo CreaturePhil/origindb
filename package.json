@@ -22,7 +22,11 @@
   ],
   "keywords": [
     "database",
-    "json"
+    "json",
+    "file",
+    "mongo",
+    "extendable",
+    "flexible"
   ],
   "dependencies": {
     "deasync": "^0.1.4",
