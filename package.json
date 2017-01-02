@@ -37,8 +37,8 @@
     "steno": "^0.4.4"
   },
   "devDependencies": {
-    "eslint": "^2.5.0",
-    "mocha": "^2.4.5",
+    "eslint": "3.12.2",
+    "mocha": "3.2.0",
     "object-assign": "^4.0.1",
     "rimraf": "^2.5.2"
   }
